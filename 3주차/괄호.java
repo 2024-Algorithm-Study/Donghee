@@ -26,12 +26,6 @@ public class Main {
 					}
 				}
 			}
-      if(stack.empty()) System.out.println("YES");
-			else System.out.println("NO");
-		}
-	}
-
-}
 			if(stack.empty()) System.out.println("YES");
 			else System.out.println("NO");
 		}
