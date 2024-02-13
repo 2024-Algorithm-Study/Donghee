@@ -29,14 +29,15 @@ public class 유기농배추 {
             visit[x][y] = true; //시작좌표 배추존재->true
             qu.poll();
 
+            //상하좌우 4번 for문 돌리기
             for (int i = 0; i < 4; i++) {
                 int cx = x + dx[i];
                 int cy = y + dy[i];
 
                 //좌표가 배추밭을 벗어나지 않은 경우
                 if (cx >= 0 && cy >= 0 && cx < M && cy < N) {
-                    //좌표(cx,cy)에 배추가 존재하고, 체크되지 않은 경우
-                    if (!visit[cx][cy] && cabbage[cx][cy] == 1) {
+                    //좌표(cx,cy)에 배추가 존재하고, 방문되지 않은 경우
+                    if ( cabbage[cx][cy] == 1 && !visit[cx][cy]) {
                         qu.add(new int[] { cx, cy });
                         visit[cx][cy] = true;
                     }
@@ -78,13 +79,13 @@ public class 유기농배추 {
             //===========================================================
 
             //bfs의 시작좌표를 셋팅해서 다른 곳에 모여있는 배추들도 파악할 수 있게한다
-            //가로 세로 좌표들을 하나씩 입력해주고
+            //반복문을 통해 가로 세로 좌표들 전체 확인
             for (int i = 0; i < M; i++) {
                 for (int j = 0; j < N; j++) {
 
-                    //좌표에 배추가 있는지 확인 및 방문한곳 인지 확인
+                    //좌표에 배추가 존재하고 아직 방문을 안한경우
                     if (cabbage[i][j] == 1 && !visit[i][j]) {
-                        bfs(i, j);
+                        bfs(i, j); //bfs를 통해 시작좌표부터(i,j) 인접한 부분(배추 존재o)까지 방문 후 count++
                         count++;
                     }
                 }
